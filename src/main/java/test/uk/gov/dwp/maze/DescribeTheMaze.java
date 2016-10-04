@@ -54,4 +54,22 @@ public class DescribeTheMaze {
 
         Maze maze = new Maze(pathToMazeTxtFile);
     }
+
+    @Test
+    public void itShouldKnowHowManyWallsAreInTheMap() throws IOException {
+        String pathToMazeTxtFile = Test.class.getClassLoader().getResource("").getPath() + "Maze1.txt";
+
+        Maze maze = new Maze(pathToMazeTxtFile);
+
+        assertEquals(149, maze.getNumberOfWalls());
+    }
+
+    @Test
+    public void itShouldKnowHowManySpacesAreInTheMap() throws IOException {
+        String pathToMazeTxtFile = Test.class.getClassLoader().getResource("").getPath() + "Maze1.txt";
+
+        Maze maze = new Maze(pathToMazeTxtFile);
+
+        assertEquals(74, maze.getNumerOfSpaces());
+    }
 }

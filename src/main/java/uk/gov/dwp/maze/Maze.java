@@ -34,4 +34,12 @@ public class Maze {
     public String getMazeAsString() {
         return mazeString;
     }
+
+    public long getNumberOfWalls() {
+        return getCountOfCharsInString(mazeString, 'X');
+    }
+
+    public long getNumerOfSpaces() {
+        return getCountOfCharsInString(mazeString, ' ');
+    }
 }
