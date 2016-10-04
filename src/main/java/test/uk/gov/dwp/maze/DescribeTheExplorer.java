@@ -21,7 +21,7 @@ public class DescribeTheExplorer {
             mazeGrid = grid;
         }
 
-        protected char[][] getMazeGrid() {
+        protected char[][] getMapAsGrid() {
             return mazeGrid;
         }
 
@@ -113,12 +113,33 @@ public class DescribeTheExplorer {
         assertArrayEquals(explorer.getLocation(), new int[]{1, 0});
     }
 
+    @Test
+    public void itShouldNotMoveOntoAWall() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithUpNotAvailable());
+        testMaze.setStartPoint(new int[]{1,0});
+
+        Explorer explorer = new Explorer(testMaze);
+        explorer.move();
+
+        assertArrayEquals(explorer.getLocation(), new int[]{1, 0});
+    }
+
     private char[][] getMapWithMoveAvailable() {
         return new char[][]
                 {
                         {' ', ' ', ' '},
                         {' ', 'S', ' '},
                         {' ', ' ', ' '}
+                };
+    }
+
+    private char[][] getMapWithUpNotAvailable() {
+        return new char[][]
+                {
+                        {'X', 'X', 'X'},
+                        {'X', 'S', 'X'},
+                        {'X', 'X', 'X'}
                 };
     }
 }

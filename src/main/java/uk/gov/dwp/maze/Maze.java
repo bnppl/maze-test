@@ -49,7 +49,7 @@ public class Maze {
         return mapAsGrid[y][x];
     }
 
-    private char[][] getMapAsGrid() {
+    protected char[][] getMapAsGrid() {
         String rows[] = mazeString.split("\n");
         char[][] mapAsGrid = new char[rows.length][rows[0].length()];
         for(int i=0; i < rows.length; i++) {

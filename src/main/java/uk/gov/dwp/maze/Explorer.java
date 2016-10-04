@@ -20,8 +20,10 @@ public class Explorer {
     }
 
     public void move() {
-        location[0] += yIncrement;
-        location[1] += xIncrement;
+        if (maze.getTile(location[0]+ yIncrement, location[1]+ xIncrement) != 'X') {
+            location[0] += yIncrement;
+            location[1] += xIncrement;
+        }
     }
 
     public void faceDown() {
