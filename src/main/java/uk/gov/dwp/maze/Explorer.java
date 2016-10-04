@@ -45,4 +45,8 @@ public class Explorer {
         yIncrement = 0;
         xIncrement = -1;
     }
+
+    public char whatIsNextTile() {
+        return maze.getTile(location[0] + yIncrement, location[1]+xIncrement);
+    }
 }

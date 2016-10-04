@@ -7,6 +7,7 @@ import uk.gov.dwp.maze.Maze;
 import java.io.IOException;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class DescribeTheExplorer {
     private class TestMaze extends Maze {
@@ -125,6 +126,17 @@ public class DescribeTheExplorer {
         assertArrayEquals(explorer.getLocation(), new int[]{1, 0});
     }
 
+    @Test
+    public void itShouldKnowWhatTileItIsFacing() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapFacingAWall());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+
+        assertEquals(explorer.whatIsNextTile(), 'X');
+    }
+
     private char[][] getMapWithMoveAvailable() {
         return new char[][]
                 {
@@ -140,6 +152,15 @@ public class DescribeTheExplorer {
                         {'X', 'X', 'X'},
                         {'X', 'S', 'X'},
                         {'X', 'X', 'X'}
+                };
+    }
+
+    private char[][] getMapFacingAWall() {
+        return new char[][]
+                {
+                        {' ', 'X', ' '},
+                        {' ', 'S', ' '},
+                        {' ', ' ', ' '}
                 };
     }
 }
