@@ -14,4 +14,8 @@ public class Explorer {
     public int[] getLocation() {
         return location;
     }
+
+    public void move() {
+        location[0]--;
+    }
 }
