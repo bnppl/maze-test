@@ -87,6 +87,32 @@ public class DescribeTheExplorer {
         assertArrayEquals(new int[]{0, 1}, explorer.getLocation());
     }
 
+    @Test
+    public void itShouldMoveRightWhenFacingRightAndMoveIsPossible() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithMoveAvailable());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+        explorer.faceRight();
+        explorer.move();
+
+        assertArrayEquals(new int[]{1, 2}, explorer.getLocation());
+    }
+
+    @Test
+    public void itShouldMoveLeftWhenFacingLeftAndMoveIsPossible() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithMoveAvailable());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+        explorer.faceLeft();
+        explorer.move();
+
+        assertArrayEquals(explorer.getLocation(), new int[]{1, 0});
+    }
+
     private char[][] getMapWithMoveAvailable() {
         return new char[][]
                 {

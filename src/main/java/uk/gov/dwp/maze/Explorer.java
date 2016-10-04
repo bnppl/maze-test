@@ -6,6 +6,7 @@ public class Explorer {
     private int[] location;
 
     private int yIncrement;
+    private int xIncrement;
 
     public Explorer(Maze maze) {
 
@@ -20,13 +21,26 @@ public class Explorer {
 
     public void move() {
         location[0] += yIncrement;
+        location[1] += xIncrement;
     }
 
     public void faceDown() {
         yIncrement = 1;
+        xIncrement = 0;
     }
 
     public void faceUp() {
         yIncrement = -1;
+        xIncrement = 0;
+    }
+
+    public void faceRight() {
+        yIncrement = 0;
+        xIncrement = 1;
+    }
+
+    public void faceLeft() {
+        yIncrement = 0;
+        xIncrement = -1;
     }
 }
