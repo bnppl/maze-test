@@ -25,7 +25,7 @@ public class Explorer {
     }
 
     public void move() {
-        if (maze.getTile(location[0]+ yIncrement, location[1]+ xIncrement) != 'X') {
+        if (maze.getTile(location[0] + yIncrement, location[1] + xIncrement) != 'X') {
             location[0] += yIncrement;
             location[1] += xIncrement;
 
@@ -58,7 +58,7 @@ public class Explorer {
     }
 
     public char whatIsNextTile() {
-        return maze.getTile(location[0] + yIncrement, location[1]+xIncrement);
+        return maze.getTile(location[0] + yIncrement, location[1] + xIncrement);
     }
 
     public String getMoves() {
@@ -66,9 +66,19 @@ public class Explorer {
     }
 
     public boolean isFinished() {
-        if (maze.getTile(location[0],location[1]) == 'F') {
+        if (maze.getTile(location[0], location[1]) == 'F') {
             return true;
         }
         return false;
+    }
+
+    public String drawLocationOnMap() {
+        String drawing = "";
+        char[][] mapAsGrid = maze.getMapAsGrid();
+        mapAsGrid[location[0]][location[1]] = '*';
+        for (char[] row : mapAsGrid) {
+            drawing += new String(row) + "\n";
+        }
+        return drawing;
     }
 }

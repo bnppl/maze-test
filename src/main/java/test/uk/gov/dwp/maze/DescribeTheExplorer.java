@@ -23,7 +23,7 @@ public class DescribeTheExplorer {
             mazeGrid = grid;
         }
 
-        protected char[][] getMapAsGrid() {
+        public char[][] getMapAsGrid() {
             return mazeGrid;
         }
 
@@ -49,7 +49,7 @@ public class DescribeTheExplorer {
     public void itShouldMoveUpByDefault() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.move();
@@ -66,7 +66,7 @@ public class DescribeTheExplorer {
     public void itShouldMoveDownWhenFacingDownAndMoveIsPossible() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.faceDown();
@@ -79,7 +79,7 @@ public class DescribeTheExplorer {
     public void itShouldMoveUpWhenFaceUpIsCalled() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.faceDown();
@@ -93,7 +93,7 @@ public class DescribeTheExplorer {
     public void itShouldMoveRightWhenFacingRightAndMoveIsPossible() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.faceRight();
@@ -106,7 +106,7 @@ public class DescribeTheExplorer {
     public void itShouldMoveLeftWhenFacingLeftAndMoveIsPossible() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.faceLeft();
@@ -119,7 +119,7 @@ public class DescribeTheExplorer {
     public void itShouldNotMoveOntoAWall() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithUpNotAvailable());
-        testMaze.setStartPoint(new int[]{1,0});
+        testMaze.setStartPoint(new int[]{1, 0});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.move();
@@ -131,7 +131,7 @@ public class DescribeTheExplorer {
     public void itShouldKnowWhatTileItIsFacing() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapFacingAWall());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
 
@@ -142,7 +142,7 @@ public class DescribeTheExplorer {
     public void itShouldRememberWhereItHasMoved() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.move();
@@ -160,22 +160,34 @@ public class DescribeTheExplorer {
     public void itShouldKnowWhenItIsNotFinished() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithFinish());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
 
         assertTrue(!explorer.isFinished());
     }
+
     @Test
     public void itShouldKnowWhenItIsFinished() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithFinish());
-        testMaze.setStartPoint(new int[]{1,1});
+        testMaze.setStartPoint(new int[]{1, 1});
 
         Explorer explorer = new Explorer(testMaze);
         explorer.move();
 
         assertTrue(explorer.isFinished());
+    }
+
+    @Test
+    public void itShouldBeAbleToDrawTheMapWithItsLocationShown() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithMoveAvailable());
+        testMaze.setStartPoint(new int[]{1, 1});
+
+        Explorer explorer = new Explorer(testMaze);
+
+        assertEquals("   \n * \n   \n", explorer.drawLocationOnMap());
     }
 
     private char[][] getMapWithMoveAvailable() {

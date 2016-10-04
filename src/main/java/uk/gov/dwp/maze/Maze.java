@@ -22,7 +22,7 @@ public class Maze {
         if (getCountOfCharsInString(mazeString, 'F') == 0) {
             throw new IllegalArgumentException("Maze must have an end point.");
         }
-        if(!mazeString.matches("[SFX \n]*")) {
+        if (!mazeString.matches("[SFX \n]*")) {
             throw new IllegalArgumentException("Maze contains invalid characters.");
         }
     }
@@ -49,11 +49,11 @@ public class Maze {
         return mapAsGrid[y][x];
     }
 
-    protected char[][] getMapAsGrid() {
+    public char[][] getMapAsGrid() {
         String rows[] = mazeString.split("\n");
         char[][] mapAsGrid = new char[rows.length][rows[0].length()];
-        for(int i=0; i < rows.length; i++) {
-           mapAsGrid[i] = rows[i].toCharArray();
+        for (int i = 0; i < rows.length; i++) {
+            mapAsGrid[i] = rows[i].toCharArray();
         }
 
         return mapAsGrid;
@@ -65,11 +65,11 @@ public class Maze {
 
     private int[] findFirstLocationOfTile(char tileChar) {
         int y = 0;
-        for(char[] row: getMapAsGrid()) {
+        for (char[] row : getMapAsGrid()) {
             int x = 0;
-            for(char tile: row) {
-                if(tile == tileChar) {
-                    return new int[] {y,x};
+            for (char tile : row) {
+                if (tile == tileChar) {
+                    return new int[]{y, x};
                 }
                 x++;
             }
