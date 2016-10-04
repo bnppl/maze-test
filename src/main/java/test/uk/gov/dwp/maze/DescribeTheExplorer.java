@@ -45,8 +45,7 @@ public class DescribeTheExplorer {
 
     @Test
     public void itShouldMove() throws IOException {
-        String pathToMazeTxtFile = Test.class.getClassLoader().getResource("").getPath() + "Maze1.txt";
-        TestMaze testMaze = new TestMaze(pathToMazeTxtFile);
+        TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
         testMaze.setStartPoint(new int[]{1,1});
 
@@ -54,6 +53,24 @@ public class DescribeTheExplorer {
         explorer.move();
 
         assertArrayEquals(new int[]{0, 1}, explorer.getLocation());
+    }
+
+    private TestMaze getTestMaze() throws IOException {
+        String pathToMazeTxtFile = Test.class.getClassLoader().getResource("").getPath() + "Maze1.txt";
+        return new TestMaze(pathToMazeTxtFile);
+    }
+
+    @Test
+    public void itShouldMoveDownWhenFacingDownAndMoveIsPossible() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithMoveAvailable());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+        explorer.faceDown();
+        explorer.move();
+
+        assertArrayEquals(explorer.getLocation(), new int[]{2, 1});
     }
 
     private char[][] getMapWithMoveAvailable() {

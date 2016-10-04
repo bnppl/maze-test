@@ -5,6 +5,8 @@ public class Explorer {
     private Maze maze;
     private int[] location;
 
+    private int yIncrement = -1;
+
     public Explorer(Maze maze) {
 
         this.maze = maze;
@@ -16,6 +18,10 @@ public class Explorer {
     }
 
     public void move() {
-        location[0]--;
+        location[0] += yIncrement;
+    }
+
+    public void faceDown() {
+        yIncrement = 1;
     }
 }
