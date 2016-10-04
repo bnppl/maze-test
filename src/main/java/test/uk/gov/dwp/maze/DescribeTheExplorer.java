@@ -137,6 +137,24 @@ public class DescribeTheExplorer {
         assertEquals(explorer.whatIsNextTile(), 'X');
     }
 
+    @Test
+    public void itShouldRememberWhereItHasMoved() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithMoveAvailable());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+        explorer.move();
+        explorer.faceLeft();
+        explorer.move();
+        explorer.faceRight();
+        explorer.move();
+        explorer.faceDown();
+        explorer.move();
+
+        assertEquals("up, left, right, down", explorer.getMoves());
+    }
+
     private char[][] getMapWithMoveAvailable() {
         return new char[][]
                 {

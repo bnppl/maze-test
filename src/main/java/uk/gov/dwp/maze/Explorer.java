@@ -1,5 +1,7 @@
 package uk.gov.dwp.maze;
 
+import java.util.StringJoiner;
+
 public class Explorer {
 
     private Maze maze;
@@ -7,6 +9,9 @@ public class Explorer {
 
     private int yIncrement;
     private int xIncrement;
+
+    private String currentDirection;
+    private StringJoiner moveHistory = new StringJoiner(", ");
 
     public Explorer(Maze maze) {
 
@@ -23,30 +28,40 @@ public class Explorer {
         if (maze.getTile(location[0]+ yIncrement, location[1]+ xIncrement) != 'X') {
             location[0] += yIncrement;
             location[1] += xIncrement;
+
+            moveHistory.add(currentDirection);
         }
     }
 
     public void faceDown() {
+        currentDirection = "down";
         yIncrement = 1;
         xIncrement = 0;
     }
 
     public void faceUp() {
+        currentDirection = "up";
         yIncrement = -1;
         xIncrement = 0;
     }
 
     public void faceRight() {
+        currentDirection = "right";
         yIncrement = 0;
         xIncrement = 1;
     }
 
     public void faceLeft() {
+        currentDirection = "left";
         yIncrement = 0;
         xIncrement = -1;
     }
 
     public char whatIsNextTile() {
         return maze.getTile(location[0] + yIncrement, location[1]+xIncrement);
+    }
+
+    public String getMoves() {
+        return moveHistory.toString();
     }
 }
