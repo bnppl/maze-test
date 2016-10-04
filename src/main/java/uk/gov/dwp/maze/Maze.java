@@ -44,12 +44,41 @@ public class Maze {
     }
 
     public char getTile(int y, int x) {
+        char[][] mapAsGrid = getMapAsGrid();
+
+        return mapAsGrid[y][x];
+    }
+
+    private char[][] getMapAsGrid() {
         String rows[] = mazeString.split("\n");
         char[][] mapAsGrid = new char[rows.length][rows[0].length()];
         for(int i=0; i < rows.length; i++) {
            mapAsGrid[i] = rows[i].toCharArray();
         }
 
-        return mapAsGrid[y][x];
+        return mapAsGrid;
+    }
+
+    public int[] getStartPoint() {
+        return findFirstLocationOfTile('S');
+    }
+
+    private int[] findFirstLocationOfTile(char tileChar) {
+        int y = 0;
+        for(char[] row: getMapAsGrid()) {
+            int x = 0;
+            for(char tile: row) {
+                if(tile == tileChar) {
+                    return new int[] {y,x};
+                }
+                x++;
+            }
+            y++;
+        }
+        return new int[]{};
+    }
+
+    public int[] getEndPoint() {
+        return findFirstLocationOfTile('F');
     }
 }

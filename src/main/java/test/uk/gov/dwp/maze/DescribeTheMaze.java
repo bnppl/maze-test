@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class DescribeTheMaze {
@@ -82,5 +83,23 @@ public class DescribeTheMaze {
         assertEquals('X', maze.getTile(0,0));
         assertEquals('S', maze.getTile(3,3));
         assertEquals('F', maze.getTile(14,1));
+    }
+
+    @Test
+    public void itShouldBeAbleToReturnTheCoordinatesOfTheStartPoint() throws IOException {
+        String pathToMazeTxtFile = Test.class.getClassLoader().getResource("").getPath() + "Maze1.txt";
+
+        Maze maze = new Maze(pathToMazeTxtFile);
+
+        assertArrayEquals(new int[]{3,3},maze.getStartPoint());
+    }
+
+    @Test
+    public void itShouldBeAbleToReturnTheCoordinatesOfTheEndPoint() throws IOException {
+        String pathToMazeTxtFile = Test.class.getClassLoader().getResource("").getPath() + "Maze1.txt";
+
+        Maze maze = new Maze(pathToMazeTxtFile);
+
+        assertArrayEquals(new int[]{14,1},maze.getEndPoint());
     }
 }
