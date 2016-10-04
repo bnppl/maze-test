@@ -5,12 +5,13 @@ public class Explorer {
     private Maze maze;
     private int[] location;
 
-    private int yIncrement = -1;
+    private int yIncrement;
 
     public Explorer(Maze maze) {
 
         this.maze = maze;
         this.location = maze.getStartPoint();
+        faceUp();
     }
 
     public int[] getLocation() {
@@ -23,5 +24,9 @@ public class Explorer {
 
     public void faceDown() {
         yIncrement = 1;
+    }
+
+    public void faceUp() {
+        yIncrement = -1;
     }
 }

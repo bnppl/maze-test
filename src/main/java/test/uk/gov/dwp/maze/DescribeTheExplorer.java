@@ -44,7 +44,7 @@ public class DescribeTheExplorer {
     }
 
     @Test
-    public void itShouldMove() throws IOException {
+    public void itShouldMoveUpByDefault() throws IOException {
         TestMaze testMaze = getTestMaze();
         testMaze.setMazeGrid(getMapWithMoveAvailable());
         testMaze.setStartPoint(new int[]{1,1});
@@ -71,6 +71,20 @@ public class DescribeTheExplorer {
         explorer.move();
 
         assertArrayEquals(explorer.getLocation(), new int[]{2, 1});
+    }
+
+    @Test
+    public void itShouldMoveUpWhenFaceUpIsCalled() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithMoveAvailable());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+        explorer.faceDown();
+        explorer.faceUp();
+        explorer.move();
+
+        assertArrayEquals(new int[]{0, 1}, explorer.getLocation());
     }
 
     private char[][] getMapWithMoveAvailable() {
