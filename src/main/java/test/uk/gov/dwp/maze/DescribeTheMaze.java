@@ -72,4 +72,15 @@ public class DescribeTheMaze {
 
         assertEquals(74, maze.getNumerOfSpaces());
     }
+
+    @Test
+    public void itShouldBeAbleToReturnTheTypeOfTileAtACoordinate() throws IOException {
+        String pathToMazeTxtFile = Test.class.getClassLoader().getResource("").getPath() + "Maze1.txt";
+
+        Maze maze = new Maze(pathToMazeTxtFile);
+
+        assertEquals('X', maze.getTile(0,0));
+        assertEquals('S', maze.getTile(3,3));
+        assertEquals('F', maze.getTile(14,1));
+    }
 }

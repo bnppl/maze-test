@@ -42,4 +42,14 @@ public class Maze {
     public long getNumerOfSpaces() {
         return getCountOfCharsInString(mazeString, ' ');
     }
+
+    public char getTile(int y, int x) {
+        String rows[] = mazeString.split("\n");
+        char[][] mapAsGrid = new char[rows.length][rows[0].length()];
+        for(int i=0; i < rows.length; i++) {
+           mapAsGrid[i] = rows[i].toCharArray();
+        }
+
+        return mapAsGrid[y][x];
+    }
 }
