@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DescribeTheExplorer {
     private class TestMaze extends Maze {
@@ -155,6 +156,28 @@ public class DescribeTheExplorer {
         assertEquals("up, left, right, down", explorer.getMoves());
     }
 
+    @Test
+    public void itShouldKnowWhenItIsNotFinished() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithFinish());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+
+        assertTrue(!explorer.isFinished());
+    }
+    @Test
+    public void itShouldKnowWhenItIsFinished() throws IOException {
+        TestMaze testMaze = getTestMaze();
+        testMaze.setMazeGrid(getMapWithFinish());
+        testMaze.setStartPoint(new int[]{1,1});
+
+        Explorer explorer = new Explorer(testMaze);
+        explorer.move();
+
+        assertTrue(explorer.isFinished());
+    }
+
     private char[][] getMapWithMoveAvailable() {
         return new char[][]
                 {
@@ -177,6 +200,15 @@ public class DescribeTheExplorer {
         return new char[][]
                 {
                         {' ', 'X', ' '},
+                        {' ', 'S', ' '},
+                        {' ', ' ', ' '}
+                };
+    }
+
+    private char[][] getMapWithFinish() {
+        return new char[][]
+                {
+                        {' ', 'F', ' '},
                         {' ', 'S', ' '},
                         {' ', ' ', ' '}
                 };

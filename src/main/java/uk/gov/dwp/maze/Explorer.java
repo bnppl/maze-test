@@ -64,4 +64,11 @@ public class Explorer {
     public String getMoves() {
         return moveHistory.toString();
     }
+
+    public boolean isFinished() {
+        if (maze.getTile(location[0],location[1]) == 'F') {
+            return true;
+        }
+        return false;
+    }
 }
